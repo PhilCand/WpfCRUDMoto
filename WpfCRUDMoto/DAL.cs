@@ -28,14 +28,14 @@ namespace WpfCRUDMoto
             {
                 while (dataReader.Read())
                 {
-                    Personnes.Add(new Personne(dataReader["nom"].ToString(), Convert.ToInt32(dataReader["id"])));                    
+                    Personnes.Add(new Personne(dataReader["nom"].ToString(), Convert.ToInt32(dataReader["id"])));
                 }
             }
 
             return Personnes;
-            
+
         }
-               
+
         public static void DeletePerson(int PersonID)
         {
             //bool result = false;
@@ -63,7 +63,7 @@ namespace WpfCRUDMoto
 
             //Create the SQL Query for inserting an article
             string sqlQuery = ($"Insert into personnes (nom) Values('{newMotard.Nom}');" + "Select @@Identity");
-            
+
 
             //Create and open a connection to SQL Server 
             SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\PHIL\WpfCRUDMoto\WpfCRUDMoto\DBMoto.mdf; Integrated Security = True");
@@ -87,7 +87,7 @@ namespace WpfCRUDMoto
 
             SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\PHIL\WpfCRUDMoto\WpfCRUDMoto\DBMoto.mdf; Integrated Security = True");
             connection.Open();
-            
+
             SqlCommand command = new SqlCommand(sqlQuery, connection);
 
             SqlDataReader dataReader = command.ExecuteReader();
@@ -96,11 +96,11 @@ namespace WpfCRUDMoto
 
             if (dataReader.HasRows)
             {
-                
+
 
                 while (dataReader.Read())
                 {
-                   
+
 
                     if (newMotard.Id != Convert.ToInt32(dataReader["personneID"]))
                     {
@@ -121,7 +121,7 @@ namespace WpfCRUDMoto
                         NewMoto.IdProprietaire = Convert.ToInt32(dataReader["personneID"]);
 
                         newMotard.Garage.Add(NewMoto);
-                    }                    
+                    }
                 }
             }
 
@@ -129,7 +129,7 @@ namespace WpfCRUDMoto
 
         }
 
-        public static int CreateMoto(Moto newMoto)
+        public static void CreateMoto(Moto newMoto)
         {
 
             //Create the SQL Query for inserting an article
@@ -143,11 +143,13 @@ namespace WpfCRUDMoto
             //Create a Command object
             SqlCommand command = new SqlCommand(sqlQuery, connection);
 
-            //Execute the command to SQL Server and return the newly created ID
-            int newMotoID = Convert.ToInt32((decimal)command.ExecuteScalar());
+            command.ExecuteNonQuery();
 
-            // Set return value
-            return newMotoID;
+            ////Execute the command to SQL Server and return the newly created ID
+            //int newMotoID = Convert.ToInt32((decimal)command.ExecuteScalar());
+
+            //// Set return value
+            //return newMotoID;
         }
 
         public static void DeleteMoto(int MotoID)

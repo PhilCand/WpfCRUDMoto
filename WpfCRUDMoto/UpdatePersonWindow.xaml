@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRUDMoto"
         mc:Ignorable="d"
-        Title="Editer motard" Height="150" Width="250">
+        Title="Editer motard" Height="150" Width="250" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
             <Grid>

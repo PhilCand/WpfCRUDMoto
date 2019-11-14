@@ -37,6 +37,8 @@ namespace WpfCRUDMoto
             DAL.DeletePerson(unMotard.Id);
             listePersonne.ItemsSource = DAL.GetPersonMoto();
 
+            if (listePersonne.Items.Count > 0) listePersonne.SelectedIndex = 0;
+
         }
 
         private void BtnAjoutPersonne_Click(object sender, RoutedEventArgs e)
@@ -112,6 +114,16 @@ namespace WpfCRUDMoto
 
         private void BtnAjoutdata_Click(object sender, RoutedEventArgs e)
         {
+            int newMotardId = DAL.CreatePerson(new Personne{ Nom = "toto"});
+            DAL.CreateMoto(new Moto { Marque = "Honda", Cylindree = 500, IdProprietaire = newMotardId });
+            DAL.CreateMoto(new Moto { Marque = "Kawasaki", Cylindree = 850, IdProprietaire = newMotardId });
+
+            newMotardId = DAL.CreatePerson(new Personne { Nom = "tata" });
+
+            newMotardId = DAL.CreatePerson(new Personne { Nom = "tutu" });
+            DAL.CreateMoto(new Moto { Marque = "Peugeot", Cylindree = 125, IdProprietaire = newMotardId });
+
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
 
         }
     }

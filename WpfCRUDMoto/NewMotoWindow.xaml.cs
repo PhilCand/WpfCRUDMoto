@@ -51,7 +51,7 @@ namespace WpfCRUDMoto
             newMoto.Cylindree = int.Parse(txtCylindree.Text);
             newMoto.IdProprietaire = Index;
 
-            int newMotoID = DAL.CreateMoto(newMoto);
+            DAL.CreateMoto(newMoto);
 
             this.Close();
 
