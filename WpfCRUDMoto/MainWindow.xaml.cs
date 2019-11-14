@@ -24,5 +24,95 @@ namespace WpfCRUDMoto
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
+        }
+
+        private void BtnSupprimerPersonne_Click(object sender, RoutedEventArgs e)
+        {
+
+            Personne unMotard = listePersonne.SelectedItem as Personne;
+            DAL.DeletePerson(unMotard.Id);
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
+
+        }
+
+        private void BtnAjoutPersonne_Click(object sender, RoutedEventArgs e)
+        {
+            NewPersonWindow n = new NewPersonWindow();
+            n.ShowDialog();
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
+        }
+
+        private void ListePersonne_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listePersonne.SelectedIndex < 0) return;
+
+            listeMoto.Items.Clear();
+
+            Personne selectedMotard = listePersonne.SelectedItem as Personne;
+
+            foreach (Moto selectedMoto in selectedMotard.Garage)
+            {
+                listeMoto.Items.Add(selectedMoto);
+            }
+        }
+
+        private void BtnAjoutMoto_Click(object sender, RoutedEventArgs e)
+        {
+            int index = listePersonne.SelectedIndex;
+            NewMotoWindow nm = new NewMotoWindow((listePersonne.SelectedItem as Personne).Id);
+            nm.ShowDialog();
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
+            listePersonne.SelectedIndex = index;
+        }
+
+        private void BtnSupprimerMoto_Click(object sender, RoutedEventArgs e)
+        {
+            int index = listePersonne.SelectedIndex;
+            Moto uneMoto = listeMoto.SelectedItem as Moto;
+            DAL.DeleteMoto(uneMoto.Id);
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
+            listePersonne.SelectedIndex = index;
+            if (listeMoto.Items.Count > 0) listeMoto.SelectedIndex = 0;
+        }
+
+        private void BtnUpdatePerson_Click(object sender, RoutedEventArgs e)
+        {
+            int index = listePersonne.SelectedIndex;
+            UpdatePersonWindow u = new UpdatePersonWindow((listePersonne.SelectedItem as Personne));
+            u.ShowDialog();
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
+            listePersonne.SelectedIndex = index;
+        }
+
+        private void BtnEditerMoto_Click(object sender, RoutedEventArgs e)
+        {
+            int index = listePersonne.SelectedIndex;
+            UpdateMotoWindow um = new UpdateMotoWindow(listeMoto.SelectedItem as Moto);
+            um.ShowDialog();
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
+            listePersonne.SelectedIndex = index;
+            if (listeMoto.Items.Count > 0) listeMoto.SelectedIndex = 0;
+
+        }
+
+        private void BtnQuitterAppli_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = MessageBox.Show("Voulez vous vraiment quitter ?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (messageBoxResult == MessageBoxResult.No) e.Cancel = true;
+        }
+
+        private void BtnAjoutdata_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

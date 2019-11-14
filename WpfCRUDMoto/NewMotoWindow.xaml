@@ -1,0 +1,38 @@
+﻿<Window x:Class="WpfCRUDMoto.NewMotoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCRUDMoto"
+        mc:Ignorable="d"
+        Title="Ajouter une moto" Height="150" Width="300" Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Marque :" Margin="10"/>
+                <TextBox Name="txtMarque" Grid.Column="1"  Margin="10"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Cylindrée :" Margin="10"/>
+                <TextBox Name="txtCylindree" Grid.Column="1"  Margin="10"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Name="btnCreateMoto" Content="Créer moto" Margin="10" Click="BtnCreateMoto_Click"/>
+                <Button Name="btnCancel" Content="Annuler" Grid.Column="1" Margin="10" Click="BtnCancel_Click"/>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Window>
