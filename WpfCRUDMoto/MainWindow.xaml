@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRUDMoto"
         mc:Ignorable="d"
-        Title="Joe Bar Team" Height="600" Width="600" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="Joe Bar Team" Height="600" Width="600" Loaded="Window_Loaded" Closing="Window_Closing" Background="{DynamicResource BGblack}" >
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -15,95 +16,36 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TextBlock Text="Liste des motards" Margin="10 0 0 0" HorizontalAlignment="Center"/>
-                <ListBox Name="listePersonne" Grid.Row="1" Margin="10" SelectionChanged="ListePersonne_SelectionChanged" />
-            </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Liste des motards" Margin="10 0 0 0" HorizontalAlignment="Center" FontSize="20" Foreground="{DynamicResource TextBlanc}"/>
+            <ListBox Name="listePersonne" Grid.Row="1" Margin="10" SelectionChanged="ListePersonne_SelectionChanged" Background="{DynamicResource BGListBox}" FontSize="16" />
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Text="Liste des motos" Margin="10 0 0 0" HorizontalAlignment="Center"/>
-            <ListBox Name="listeMoto" Margin="10" Grid.Row="1"/>
+            <TextBlock Text="Liste des motos" Margin="10 0 0 0" HorizontalAlignment="Center" Foreground="{DynamicResource TextBlanc}" FontSize="20"/>
+            <ListBox Name="listeMoto" Margin="10" Grid.Row="1" Background="{DynamicResource BGListBox}" FontSize="16"/>
         </Grid>
 
         <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Bottom">
             <Image Source="images/joe-bar-team.png" Margin="10" />
-            <Button Content="Ajouter motard" Name="btnAjoutPersonne" Margin="0 0 0 10" Height="30" Click="BtnAjoutPersonne_Click"/>
-            <Button Content="Editer motard" Name="btnUpdatePerson" Margin="0 0 0 10" Height="30" Click="BtnUpdatePerson_Click" >
-                <Button.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger 
-                                 Binding ="{Binding ElementName=listePersonne, Path=SelectedIndex}" 
-                                 Value="-1">
-                                <Setter Property="Button.IsEnabled" Value="false"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="Ajouter moto" Name="btnAjoutMoto" Margin="0 0 0 10" Height="30" Click="BtnAjoutMoto_Click">
-                <Button.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger 
-                                 Binding ="{Binding ElementName=listePersonne, Path=SelectedIndex}" 
-                                 Value="-1">
-                                <Setter Property="Button.IsEnabled" Value="false"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="Supprimer motard" Name="btnSupprimerPersonne" Height="30" Click="BtnSupprimerPersonne_Click" >
-                <Button.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger 
-                                 Binding ="{Binding ElementName=listePersonne, Path=SelectedIndex}" 
-                                 Value="-1">
-                                <Setter Property="Button.IsEnabled" Value="false"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+            <Button Content="Ajouter motard" Name="btnAjoutPersonne" Margin="0 0 0 10" Height="30" Click="BtnAjoutPersonne_Click" Style="{StaticResource ActiveButton}"/>
+            <Button Content="Editer motard" Name="btnUpdatePerson" Margin="0 0 0 10" Height="30" Click="BtnUpdatePerson_Click" Style="{StaticResource InactiveButtonMotard}" />
+            <Button Content="Ajouter moto" Name="btnAjoutMoto" Margin="0 0 0 10" Height="30" Click="BtnAjoutMoto_Click" Style="{StaticResource InactiveButtonMotard}" />
+            <Button Content="Supprimer motard" Name="btnSupprimerPersonne" Height="30" Click="BtnSupprimerPersonne_Click" Style="{StaticResource InactiveButtonMotard}" />               
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10" VerticalAlignment="Bottom">
-            <Button Content="Ajout Data" Name="btnAjoutdata" Margin="0 0 0 10" Height="30" Click="BtnAjoutdata_Click" />
-            <Button Content="Editer moto" Name="btnEditerMoto" Margin="0 0 0 10" Height="30" Click="BtnEditerMoto_Click" >
-                <Button.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger 
-                                 Binding ="{Binding ElementName=listeMoto, Path=SelectedIndex}" 
-                                 Value="-1">
-                                <Setter Property="Button.IsEnabled" Value="false"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="Supprimer moto" Name="btnSupprimerMoto" Margin="0 0 0 10" Height="30" Click="BtnSupprimerMoto_Click">
-                <Button.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger 
-                                 Binding ="{Binding ElementName=listeMoto, Path=SelectedIndex}" 
-                                 Value="-1">
-                                <Setter Property="Button.IsEnabled" Value="false"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="Fermer" Name="btnQuitterAppli" Margin="0 0 0 0" Height="30"  Click="BtnQuitterAppli_Click" Background="#FFBD0606" Foreground="White"/>
+            <Button Content="Ajout Data" Name="btnAjoutdata" Margin="0 0 0 10" Height="30" Click="BtnAjoutdata_Click" Style="{StaticResource ActiveButton}" />
+            <Button Content="Editer moto" Name="btnEditerMoto" Margin="0 0 0 10" Height="30" Click="BtnEditerMoto_Click" Style="{StaticResource InactiveButtonMoto}" />
+            <Button Content="Supprimer moto" Name="btnSupprimerMoto" Margin="0 0 0 10" Height="30" Click="BtnSupprimerMoto_Click" Style="{StaticResource InactiveButtonMoto}" />
+
+            <Button Content="Fermer" Name="btnQuitterAppli" Margin="0 0 0 0" Height="30"  Click="BtnQuitterAppli_Click" Style="{StaticResource ActiveButton}"/>
 
         </StackPanel>
 

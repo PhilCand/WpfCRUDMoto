@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRUDMoto"
         mc:Ignorable="d"
-        Title="Créer motard" Height="150" Width="250" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Créer motard" Height="150" Width="250" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Background="{DynamicResource BGblack}">
     <Grid>
         <StackPanel>
             <Grid>
@@ -13,8 +13,8 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Nom" Margin="10"/>
-                <TextBox Name="txtbNewPersonName" Margin="10" Grid.Column="1"/>
+                <TextBlock Text="Nom :" Margin="10 25 10 10" Foreground="{DynamicResource TextBlanc}"/>
+                <TextBox Name="txtbNewPersonName" Margin="10 25 10 10" Grid.Column="1"/>
             </Grid>
 
             <Grid>
@@ -22,8 +22,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />                    
                 </Grid.ColumnDefinitions>
-                <Button Name="btnCreatePerson" Content="Créer" Margin="10" Click="BtnCreatePerson_Click"/>
-                <Button Name="btnCancel" Content="Annuler" Grid.Column="1" Margin="10" Click="BtnCancel_Click"/>
+                <Button Name="btnCreatePerson" Content="Créer" Margin="10" Height="30" Style="{StaticResource ActiveButton}" Click="BtnCreatePerson_Click"/>
+                <Button Name="btnCancel" Content="Annuler" Grid.Column="1" Margin="10" Style="{StaticResource ActiveButton}" Click="BtnCancel_Click"/>
             </Grid>
         </StackPanel>
         

@@ -44,5 +44,10 @@ namespace WpfCRUDMoto
             DAL.UpdateMoto(SelectedMoto);
             this.Close();
         }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
