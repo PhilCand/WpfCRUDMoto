@@ -117,12 +117,24 @@ namespace WpfCRUDMoto
             int newMotardId = DAL.CreatePerson(new Personne{ Nom = "toto"});
             DAL.CreateMoto(new Moto { Marque = "Honda", Cylindree = 500, IdProprietaire = newMotardId });
             DAL.CreateMoto(new Moto { Marque = "Kawasaki", Cylindree = 850, IdProprietaire = newMotardId });
+            DAL.CreateCotisation(new Cotisation { Annee = 2018, Montant = 200, MotardId = newMotardId });
+            DAL.CreateCotisation(new Cotisation { Annee = 2019, Montant = 250, MotardId = newMotardId });
 
             newMotardId = DAL.CreatePerson(new Personne { Nom = "tata" });
+            DAL.CreateCotisation(new Cotisation { Annee = 2018, Montant = 200, MotardId = newMotardId });
 
             newMotardId = DAL.CreatePerson(new Personne { Nom = "tutu" });
             DAL.CreateMoto(new Moto { Marque = "Peugeot", Cylindree = 125, IdProprietaire = newMotardId });
+            DAL.CreateCotisation(new Cotisation { Annee = 2019, Montant = 250, MotardId = newMotardId });
 
+            listePersonne.ItemsSource = DAL.GetPersonMoto();
+
+        }
+
+        private void BtnCotisations_Click(object sender, RoutedEventArgs e)
+        {
+            CotisationsWindow cw = new CotisationsWindow(listePersonne.SelectedItem as Personne);
+            cw.ShowDialog();
             listePersonne.ItemsSource = DAL.GetPersonMoto();
 
         }

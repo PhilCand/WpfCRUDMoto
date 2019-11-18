@@ -29,15 +29,16 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Text="Liste des motos" Margin="10 0 0 0" HorizontalAlignment="Center" Foreground="{DynamicResource TextBlanc}" FontSize="20"/>
+            <TextBlock Text="Liste des motos" Margin="10" HorizontalAlignment="Center" Foreground="{DynamicResource TextBlanc}" FontSize="20"/>
             <ListBox Name="listeMoto" Margin="10" Grid.Row="1" Background="{DynamicResource BGListBox}" FontSize="16"/>
         </Grid>
 
         <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Bottom">
-            <Image Source="images/joe-bar-team.png" Margin="10" />
+            <Image Source="images/joe-bar-team.png" Margin="10" Height="150" Width="130" />
             <Button Content="Ajouter motard" Name="btnAjoutPersonne" Margin="0 0 0 10" Height="30" Click="BtnAjoutPersonne_Click" Style="{StaticResource ActiveButton}"/>
             <Button Content="Editer motard" Name="btnUpdatePerson" Margin="0 0 0 10" Height="30" Click="BtnUpdatePerson_Click" Style="{StaticResource InactiveButtonMotard}" />
             <Button Content="Ajouter moto" Name="btnAjoutMoto" Margin="0 0 0 10" Height="30" Click="BtnAjoutMoto_Click" Style="{StaticResource InactiveButtonMotard}" />
+            <Button Content="Cotisations" Name="btnCotisations" Margin="0 0 0 10" Height="30" Style="{StaticResource InactiveButtonMotard}" Click="BtnCotisations_Click" />
             <Button Content="Supprimer motard" Name="btnSupprimerPersonne" Height="30" Click="BtnSupprimerPersonne_Click" Style="{StaticResource InactiveButtonMotard}" />               
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10" VerticalAlignment="Bottom">

@@ -71,12 +71,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Cotisation.cs" />
+    <Compile Include="CotisationsWindow.xaml.cs">
+      <DependentUpon>CotisationsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateMotoWindow.xaml.cs">
       <DependentUpon>UpdateMotoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdatePersonWindow.xaml.cs">
       <DependentUpon>UpdatePersonWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CotisationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

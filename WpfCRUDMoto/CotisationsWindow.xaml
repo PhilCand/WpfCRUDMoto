@@ -1,0 +1,44 @@
+﻿<Window x:Class="WpfCRUDMoto.CotisationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCRUDMoto"
+        mc:Ignorable="d"
+        Title="Cotisations" Height="350" Width="450" Loaded="Window_Loaded">
+    <Grid Background="{DynamicResource BGblack}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10">
+            <Label Content="Liste des cotisations de : " Foreground="{DynamicResource TextBlanc}" FontSize="16" />
+            <Label Content="Nom" Name="labelMotard" FontSize="16" Foreground="{DynamicResource TextBlanc}"/>
+        </StackPanel>
+        <ListBox Name="listeCotisations" Grid.Column="0" Grid.Row="1" Margin="10" Background="{DynamicResource BGListBox}"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="Annee :" Margin="10" Foreground="{DynamicResource TextBlanc}"/>
+                    <TextBlock Text="Montant :" Margin="10" Foreground="{DynamicResource TextBlanc}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" >
+                    <TextBox Name="txtbAnnee" Width="100" Margin="10" />
+                    <TextBox Name="txtbMontant" Width="100" Margin="10" />
+                </StackPanel>
+            </Grid>
+            <Button Name="btnAjoutCotis" Content="Ajouter" Margin="10" Click="BtnAjoutCotis_Click" Height="30" Style="{StaticResource ActiveButton}" />
+            <Button Name="btnSupprCotis" Content="Supprimer" Margin="10" Click="BtnSupprCotis_Click" Height="30" Style="{StaticResource InactiveButtonCotisation}" />
+            <Button Name="btnFermerCotis" Content="Retour" Margin="10 30 10 10" Click="BtnFermerCotis_Click" Height="30" Style="{StaticResource ActiveButton}" />
+        </StackPanel>
+
+    </Grid>
+</Window>

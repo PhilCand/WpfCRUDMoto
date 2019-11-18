@@ -48,7 +48,7 @@ namespace WpfCRUDMoto
                 }
             }
             dataReader.Close();
-            command.Dispose();            
+            command.Dispose();
             return Personnes;
         }
 
@@ -113,6 +113,55 @@ namespace WpfCRUDMoto
 
             command.Dispose();
         }
+        #endregion
+
+        #region COTISATIONS
+
+        public static List<Cotisation> GetCotisation(Personne motard)
+        {
+            List<Cotisation> Cotisations = new List<Cotisation>();
+            string sqlQuery = ($"SELECT * FROM cotisations WHERE personne_id = {motard.Id} ORDER BY annee;");
+
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            SqlDataReader dataReader = command.ExecuteReader();
+            if (dataReader.HasRows)
+            {
+                while (dataReader.Read())
+                {
+                    Cotisation newCotiz = new Cotisation();
+                    newCotiz.Annee = Convert.ToInt32(dataReader["annee"]);
+                    newCotiz.Montant = Convert.ToDouble(dataReader["montant"]);
+                    newCotiz.MotardId = Convert.ToInt32(dataReader["personne_id"]);
+                    newCotiz.Id = Convert.ToInt32(dataReader["id"]);
+                    Cotisations.Add(newCotiz);
+                }
+            }
+            dataReader.Close();
+            command.Dispose();
+            return Cotisations;
+        }
+
+        public static void CreateCotisation(Cotisation cotiz)
+        {
+            string sqlQuery = ($"Insert into cotisations (annee, montant, personne_id) Values('{cotiz.Annee}', '{cotiz.Montant}', '{cotiz.MotardId}');");
+
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            command.ExecuteNonQuery();
+
+            command.Dispose();
+        }
+
+        public static void DeleteCotisation(int CotisationID)
+        {
+            string sqlQuery = String.Format($"delete from cotisations where id = {CotisationID}");
+
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            int rowsDeletedCount = command.ExecuteNonQuery();
+
+            command.Dispose();
+        }
+
+
         #endregion
     }
 }
