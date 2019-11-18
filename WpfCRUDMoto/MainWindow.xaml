@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:WpfCRUDMoto"
         mc:Ignorable="d"
         Title="Joe Bar Team" Height="600" Width="600" Loaded="Window_Loaded" Closing="Window_Closing" Background="{DynamicResource BGblack}" >
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -22,7 +21,18 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Text="Liste des motards" Margin="10 0 0 0" HorizontalAlignment="Center" FontSize="20" Foreground="{DynamicResource TextBlanc}"/>
-            <ListBox Name="listePersonne" Grid.Row="1" Margin="10" SelectionChanged="ListePersonne_SelectionChanged" Background="{DynamicResource BGListBox}" FontSize="16" />
+            <ListBox Name="listePersonne" Grid.Row="1" Margin="10" SelectionChanged="ListePersonne_SelectionChanged" Background="{DynamicResource BGListBox}" FontSize="16" >
+                <ListBox.Resources>
+                    <Style TargetType="ListBoxItem">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsRed}" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.Resources>
+            </ListBox>
+
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>

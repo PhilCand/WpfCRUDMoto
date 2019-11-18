@@ -49,6 +49,17 @@ namespace WpfCRUDMoto
             }
             dataReader.Close();
             command.Dispose();
+
+            foreach (Personne motard in Personnes)
+            {                
+                string sqlQuery2 = ($"SELECT p.id AS personneID,  c.annee FROM personnes p join cotisations c on p.id=c.personne_id where annee = YEAR(GETDATE()) and p.id = '{motard.Id}';");
+                SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
+                SqlDataReader dataReader2 = command2.ExecuteReader();
+                if (dataReader2.HasRows) motard.IsRed = false;
+                dataReader2.Close();
+                command2.Dispose();
+            }
+
             return Personnes;
         }
 
@@ -113,6 +124,7 @@ namespace WpfCRUDMoto
 
             command.Dispose();
         }
+      
         #endregion
 
         #region COTISATIONS
