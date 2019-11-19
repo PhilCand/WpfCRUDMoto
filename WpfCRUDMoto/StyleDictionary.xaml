@@ -3,20 +3,23 @@
                     xmlns:local="clr-namespace:WpfCRUDMoto">
 
     <Style TargetType="Button" x:Key="InactiveButtonMotard">
+
         <Setter Property="Background" Value="#FFBF946E" />
         <Setter Property="TextBlock.TextAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="15" Background="#FFBF946E" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
+                    <Border x:Name="border" CornerRadius="15" Background="#FFBF946E" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
                         <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Border>
+                    </Border>       
+                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
+            <Trigger Property="IsEnabled" Value="False">                
                 <Setter Property="Foreground" Value="Silver"/>
+
             </Trigger>
             <DataTrigger 
                 Binding ="{Binding ElementName=listePersonne, Path=SelectedIndex}" 
@@ -45,6 +48,48 @@
                 Binding ="{Binding ElementName=listeMoto, Path=SelectedIndex}" 
                 Value="-1">
                 <Setter Property="Button.IsEnabled" Value="false"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Button" x:Key="InactiveButtonUpdateMotard">
+        <Setter Property="Background" Value="#FFBF946E" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="15" Background="#FFBF946E" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="Silver"/>
+            </Trigger>
+            <DataTrigger Binding ="{Binding Text.Length, ElementName=txtbUpdatePersonName, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                <Setter Property="Button.IsEnabled" Value="false"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Button" x:Key="InactiveButtonCreerMotard">
+        <Setter Property="Background" Value="#FFBF946E" />
+        <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="15" Background="#FFBF946E" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
+                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="Silver"/>
+            </Trigger>
+            <DataTrigger Binding ="{Binding Text.Length, ElementName=txtbNewPersonName, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                <Setter Property="Button.IsEnabled" Value="False"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -98,3 +143,4 @@
     </LinearGradientBrush>
     <SolidColorBrush x:Key="BGBtn" Color="#FFBF946E"/>
 </ResourceDictionary>
+

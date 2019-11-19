@@ -107,7 +107,7 @@ namespace WpfCRUDMoto
 
         public static void UpdateMoto(Moto selectedMoto)
         {
-            string updateQuery = $"Update motos SET marque = '{selectedMoto.Marque}', cylindree = '{selectedMoto.Cylindree}' Where id = '{selectedMoto.Id}';";
+            string updateQuery = $"Update motos SET personnes_id = '{selectedMoto.IdProprietaire}', marque = '{selectedMoto.Marque}', cylindree = '{selectedMoto.Cylindree}' Where id = '{selectedMoto.Id}';";
 
             SqlCommand command = new SqlCommand(updateQuery, connection);
             command.ExecuteNonQuery();

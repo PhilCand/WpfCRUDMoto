@@ -21,7 +21,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Text="Liste des motards" Margin="10 0 0 0" HorizontalAlignment="Center" FontSize="20" Foreground="{DynamicResource TextBlanc}"/>
-            <ListBox Name="listePersonne" Grid.Row="1" Margin="10" SelectionChanged="ListePersonne_SelectionChanged" Background="{DynamicResource BGListBox}" FontSize="16" >
+            <ListBox Name="listePersonne" Grid.Row="1" Margin="10" SelectionChanged="ListePersonne_SelectionChanged" Background="{DynamicResource BGListBox}" FontSize="16" MouseDown="ListePersonne_MouseDown" >
                 <ListBox.Resources>
                     <Style TargetType="ListBoxItem">
                         <Style.Triggers>

@@ -42,8 +42,28 @@ namespace WpfCRUDMoto
         private void BtnAjoutCotis_Click(object sender, RoutedEventArgs e)
         {
             Cotisation newCotiz = new Cotisation();
-            newCotiz.Montant = Convert.ToDouble(txtbMontant.Text);
-            newCotiz.Annee = Convert.ToInt32(txtbAnnee.Text);
+
+            double montant;
+            bool isOK = double.TryParse(txtbMontant.Text, out montant);
+            if(isOK) newCotiz.Montant = montant;
+            else
+            {
+                MessageBox.Show("Montant incorrect", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            int annee;
+            bool isYOK = int.TryParse(txtbAnnee.Text, out annee);
+            if (isYOK && annee > 1950 && annee <= DateTime.Now.Year) newCotiz.Annee = annee;
+            else
+            {
+                MessageBox.Show("Année incorrect", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            newCotiz.Annee = annee;
+
+
             newCotiz.MotardId = Motard.Id;
             DAL.CreateCotisation(newCotiz);
             listeCotisations.ItemsSource = DAL.GetCotisation(Motard);

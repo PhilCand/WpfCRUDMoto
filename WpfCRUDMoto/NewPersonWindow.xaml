@@ -20,12 +20,16 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />                    
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Name="btnCreatePerson" Content="Créer" Margin="10" Height="30" Style="{StaticResource ActiveButton}" Click="BtnCreatePerson_Click"/>
+                <Button Name="btnCreatePerson" Content ="Créer" Margin="10" Height="30" Style="{StaticResource InactiveButtonCreerMotard}" Click="BtnCreatePerson_Click">
+
+
+                </Button>
+
                 <Button Name="btnCancel" Content="Annuler" Grid.Column="1" Margin="10" Style="{StaticResource ActiveButton}" Click="BtnCancel_Click"/>
             </Grid>
         </StackPanel>
-        
+
     </Grid>
 </Window>

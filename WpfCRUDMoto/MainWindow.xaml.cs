@@ -32,12 +32,15 @@ namespace WpfCRUDMoto
 
         private void BtnSupprimerPersonne_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBoxResult messageBoxResult = MessageBox.Show($"Voulez vous vraiment supprimer {(listePersonne.SelectedItem as Personne).Nom} ?", "Supprimer motard ?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (messageBoxResult == MessageBoxResult.No) return;
             Personne unMotard = listePersonne.SelectedItem as Personne;
             DAL.DeletePerson(unMotard.Id);
             listePersonne.ItemsSource = DAL.GetPersonMoto();
 
-            if (listePersonne.Items.Count > 0) listePersonne.SelectedIndex = 0;
+            if (listePersonne.Items.Count > 0)listePersonne.SelectedIndex = 0;
+            else listeMoto.Items.Clear();
+
 
         }
 
@@ -93,7 +96,7 @@ namespace WpfCRUDMoto
         private void BtnEditerMoto_Click(object sender, RoutedEventArgs e)
         {
             int index = listePersonne.SelectedIndex;
-            UpdateMotoWindow um = new UpdateMotoWindow(listeMoto.SelectedItem as Moto);
+            UpdateMotoWindow um = new UpdateMotoWindow(listeMoto.SelectedItem as Moto, listePersonne.SelectedIndex);
             um.ShowDialog();
             listePersonne.ItemsSource = DAL.GetPersonMoto();
             listePersonne.SelectedIndex = index;
@@ -137,6 +140,12 @@ namespace WpfCRUDMoto
             cw.ShowDialog();
             listePersonne.ItemsSource = DAL.GetPersonMoto();
 
+        }
+
+        private void ListePersonne_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            listePersonne.UnselectAll();
+            listeMoto.Items.Clear();
         }
     }
 }

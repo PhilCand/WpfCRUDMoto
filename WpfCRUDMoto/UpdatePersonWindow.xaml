@@ -14,7 +14,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Nom" Margin="10 25 10 10" Foreground="{DynamicResource TextBlanc}"/>
-                <TextBox Name="txtbUpdatePersonName" Margin="10 25 10 10" Grid.Column="1"/>
+                <TextBox Name="txtbUpdatePersonName" Margin="10 25 10 10" Grid.Column="1" />
             </Grid>
 
             <Grid>
@@ -22,7 +22,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Name="btnUpdatePerson" Content="Editer" Margin="10" Style="{StaticResource ActiveButton}" Height="30" Click="BtnUpdatePerson_Click" />
+                <Button Name="btnUpdatePerson" Content="Editer" Margin="10" Style="{StaticResource InactiveButtonUpdateMotard}" Height="30" Click="BtnUpdatePerson_Click" />
                 <Button Name="btnCancel" Content="Annuler" Grid.Column="1" Margin="10" Style="{StaticResource ActiveButton}" Height="30" Click="BtnCancel_Click" />
             </Grid>
         </StackPanel>

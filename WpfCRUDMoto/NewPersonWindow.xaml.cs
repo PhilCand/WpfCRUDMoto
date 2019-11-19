@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfCRUDMoto.Validators;
 
 namespace WpfCRUDMoto
 {
@@ -34,6 +36,21 @@ namespace WpfCRUDMoto
             Personne newMotard = new Personne();
 
             newMotard.Nom = txtbNewPersonName.Text;
+
+            PersonneValidator validator = new PersonneValidator();
+            FluentValidation.Results.ValidationResult results = validator.Validate(newMotard);
+
+            if (results.IsValid == false)
+            {
+                foreach (ValidationFailure failure in results.Errors)
+                {
+                    MessageBox.Show($"{failure.ErrorMessage}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+                return;
+            }
+ 
+
 
             int newMotardID = DAL.CreatePerson(newMotard);
 

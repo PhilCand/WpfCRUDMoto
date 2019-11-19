@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRUDMoto"
         mc:Ignorable="d"
-        Title="Editer moto" Height="160" Width="300" WindowStartupLocation="CenterScreen" Background="{DynamicResource BGblack}">
+        Title="Editer moto" Height="250" Width="300" WindowStartupLocation="CenterScreen" Background="{DynamicResource BGblack}">
     <Grid>
         <StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Marque :" Margin="10" Foreground="{DynamicResource TextBlanc}"/>
@@ -18,11 +18,19 @@
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Cylindrée :" Margin="10" Foreground="{DynamicResource TextBlanc}"/>
                 <TextBox Name="txtCylindree" Grid.Column="1"  Margin="10"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Propriétaire :" Margin="10" Foreground="{DynamicResource TextBlanc}"/>
+                <ComboBox Name="cboxProprio" Grid.Column="1" Margin="10"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>

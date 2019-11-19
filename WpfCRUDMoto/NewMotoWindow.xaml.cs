@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfCRUDMoto.Validators;
 
 namespace WpfCRUDMoto
 {
@@ -48,8 +50,30 @@ namespace WpfCRUDMoto
             Moto newMoto = new Moto();
 
             newMoto.Marque = txtMarque.Text;
-            newMoto.Cylindree = int.Parse(txtCylindree.Text);
+
+            int cyl;
+            bool isOK = Int32.TryParse(txtCylindree.Text, out cyl);
+            if (isOK && cyl < 30000) newMoto.Cylindree = cyl;
+            else
+            {
+                MessageBox.Show("Cylindree incorrecte", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             newMoto.IdProprietaire = Index;
+
+            MotoValidator validator = new MotoValidator();
+            FluentValidation.Results.ValidationResult results = validator.Validate(newMoto);
+
+            if (results.IsValid == false)
+            {
+                foreach (ValidationFailure failure in results.Errors)
+                {
+                    MessageBox.Show($"{failure.ErrorMessage}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+                return;
+            }
 
             DAL.CreateMoto(newMoto);
 
@@ -57,6 +81,8 @@ namespace WpfCRUDMoto
 
 
         }
+
+      
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
